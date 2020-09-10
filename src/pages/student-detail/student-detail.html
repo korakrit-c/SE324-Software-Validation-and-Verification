@@ -1,0 +1,71 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ sFirstname }} {{ sLastname }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card *ngFor="let s of studentitems">
+    <img src="https://www.hit4hit.org/img/login/user-icon-6.png"/>
+    <ion-card-content>
+      <ion-card-title>ID : {{ s.student_id }}</ion-card-title>
+
+      <ion-col no-padding>
+      <h3>ชื่อ-นามสกุล</h3>
+      <p>{{ s.firstname }} {{ s.lastname }}</p>
+      <br/>
+      </ion-col>
+
+      <ion-col no-padding>
+      <h3>ระดับการศึกษา</h3>
+      <p>ปริญญา{{ s.degree }}</p>
+      <br/>
+      </ion-col>
+
+      <ion-col no-padding>
+      <h3>คณะ</h3>
+      <p>{{ s.s_name }}</p>
+      <br/>
+      </ion-col>
+
+      <ion-col no-padding>
+      <h3>สาขา</h3>
+      <p>{{ s.d_name }}</p>
+      <br/>
+      </ion-col>
+
+      <ion-col no-padding>
+      <h3>ที่อยู่</h3>
+      <p>{{ s.address }}</p>
+      <br/>
+      </ion-col>
+
+      <ion-row no-padding>
+        <ion-col>
+          <button ion-button clear small icon-left (click)="parentSelected(s.parent_id)">
+            <ion-icon name='person'></ion-icon>
+            Parent ID: {{ s.parent_id }}
+          </button>
+        </ion-col>
+        <ion-col text-right>
+          <button ion-button clear small icon-left>
+            <ion-icon name='calendar'></ion-icon>
+            {{ s.dob }}
+          </button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button block type="submit" color="danger" (click)="itemSelected(s)">แก้ไข</button>
+      </ion-col>
+    </ion-row>
+    
+  </ion-card>
+
+</ion-content>

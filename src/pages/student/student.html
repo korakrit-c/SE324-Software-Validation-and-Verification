@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Student</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-searchbar (ionInput)="getStudentItems($event)"></ion-searchbar>
+
+  <ion-list>
+        <button ion-item *ngFor="let s of students" (click)="itemSelected(s)">
+          <h3>ID : {{ s.student_id }}</h3>
+          <p>{{ s.firstname }} {{ s.lastname }}</p>
+        </button>
+  </ion-list>
+
+</ion-content>

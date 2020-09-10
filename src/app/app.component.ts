@@ -1,0 +1,51 @@
+import { Component, ViewChild } from '@angular/core';
+import { Nav, Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { HomePage } from '../pages/home/home';
+import { StudentPage } from '../pages/student/student';
+import { StudentDetailPage } from '../pages/student-detail/student-detail';
+import { StudentAddPage } from '../pages/student-add/student-add';
+import { StudentEditPage } from '../pages/student-edit/student-edit';
+import { ParentDetailPage } from '../pages/parent-detail/parent-detail';
+import { CameraPage } from '../pages/camera/camera';
+
+@Component({
+  templateUrl: 'app.html'
+})
+export class MyApp {
+  @ViewChild(Nav) nav: Nav;
+
+  rootPage: any = HomePage;
+
+  pages: Array<{title: string, component: any}>;
+
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    this.initializeApp();
+
+    // used for an example of ngFor and navigation
+    this.pages = [
+      { title: 'Home', component: HomePage },
+      { title: 'Student', component: StudentPage },
+      { title: 'Add', component: StudentAddPage },
+      { title: 'test camera', component: CameraPage }
+    ];
+
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    });
+  }
+
+  openPage(page) {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.nav.setRoot(page.component);
+  }
+}

@@ -1,0 +1,88 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Student Add</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <form novalidate [formGroup]="myForm" (ngSubmit)="addStudent()">
+    <ion-list inset>
+      <ion-icon name="contact"><ion-label >นักศึกษา</ion-label></ion-icon>
+      <ion-item>
+        <ion-label stacked>ชื่อ</ion-label>
+        <ion-input formControlName="sFirstname" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>นามสกุล</ion-label>
+        <ion-input formControlName="sLastname" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>วันเกิด</ion-label>
+        <ion-datetime formControlName="sDob" displayFormat="D MMMM YYYY" pickerFormat="D MMMM YYYY" [(ngModel)]="sDob"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>ที่อยู่</ion-label>
+        <ion-input formControlName="sAddress" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>คณะ</ion-label>
+        <ion-select formControlName="school" [(ngModel)]="scool" (ionChange)="departmentEvent(scool)">
+          <ion-option ion-item *ngFor="let s of schools"  value="{{ s.school_id }}">{{ s.s_name }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>สาขา</ion-label>
+        <ion-select formControlName="department" [(ngModel)]="department">
+          <ion-option ion-item *ngFor="let d of departments" value="{{ d.department_id }}">{{ d.d_name }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>ระดับ</ion-label>
+        <ion-select formControlName="sDegree" [(ngModel)]="degree">
+          <ion-option value="เอก">ปริญญาเอก</ion-option>
+          <ion-option value="โทร">ปริญญาโทร</ion-option>
+          <ion-option value="ตรี">ปริญญาตรี</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-list inset>
+      <ion-icon name="contact"><ion-label >ผู้ปกครอง</ion-label></ion-icon>
+      <ion-item>
+        <ion-label stacked>ชื่อ</ion-label>
+        <ion-input formControlName="pFirstname" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>นามสกุล</ion-label>
+        <ion-input formControlName="pLastname" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>ที่อยู่</ion-label>
+        <ion-input formControlName="pAddress" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>วันเกิด</ion-label>
+        <ion-datetime formControlName="pDob" displayFormat="D MMMM YYYY" pickerFormat="D MMMM YYYY" [(ngModel)]="pDob"></ion-datetime>
+      </ion-item>
+
+    </ion-list>
+    <div padding>
+      <button ion-button block type="submit" >สร้างบัญชีใหม่</button>
+    </div>
+  </form>
+
+
+</ion-content>

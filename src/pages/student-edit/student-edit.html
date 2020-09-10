@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>แก้ไข : {{ sFirstname }} {{ sLastname }}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+
+  <ion-card *ngFor="let s of studentitems">
+    <img src="https://www.hit4hit.org/img/login/user-icon-6.png"/>
+    <ion-card-content>
+      <ion-card-title>ID : {{ s.student_id }}</ion-card-title>
+
+      <form novalidate [formGroup]="myForm" (ngSubmit)="updateStudent()">
+        <ion-list>
+
+          <ion-item>
+            <ion-label floating>ชือ</ion-label>
+            <ion-input formControlName="firstname" type="text" value="{{ s.firstname }}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>นามสกุล</ion-label>
+            <ion-input formControlName="lastname" type="text" value="{{ s.lastname }}"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>ที่อยู่</ion-label>
+            <ion-input formControlName="address" type="text" value="{{ s.address }}"></ion-input>
+          </ion-item>
+
+          <div padding>
+            <button ion-button block type="submit" color="secondary" [disabled]="!myForm.valid">บันทึก</button>
+          </div>
+        </ion-list>
+      </form>
+      <button ion-button block type="submit" color="danger" (click)="removeStudent()">ลบ</button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
